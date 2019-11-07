@@ -1,30 +1,38 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 // Our Components
 import ListItem from './ListItem'
+import Pagination from './Pagination'
 
-// Api
-import { getOffers } from '../services/api'
+function OffersList({ offers }) {
+    // Our states
+    const [curPage, setCurPage] = useState(1)
+    const [offersPerPage,] = useState(12)
 
-function OffersList() {
-    const [offers, setOffers] = useState([])
+    // Calculate current offers per page
+    const lastOfferIndex = curPage * offersPerPage
+    const firstOfferIndex = lastOfferIndex - offersPerPage
+    const currentOffers = offers.slice(firstOfferIndex, lastOfferIndex)
 
-    // ComponentDidMont
-    useEffect(() => {
-        getOffers()
-            .then(data => setOffers(data))
-    }, [])
+    // 
+    const handlePaginate = (pageNum) => setCurPage(pageNum)
+
 
     return (
         <div className="container">
-                <ul className="row">
-                    {offers.map(offer => (
-                        <ListItem
-                            key={offer.id}
-                            offer={offer}
-                        />)
-                    )}
-                </ul>
+            <ul className="row">
+                {currentOffers.map(offer => (
+                    <ListItem
+                        key={offer.id}
+                        offer={offer}
+                    />)
+                )}
+            </ul>
+            <Pagination
+                offersPerPage={offersPerPage}
+                totalOffers={offers.length}
+                handlePaginate={handlePaginate}
+            />
         </div>
     )
 }
