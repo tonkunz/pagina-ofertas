@@ -1,17 +1,33 @@
 import React from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
 
-// Componentes da nossa interface
+// Our components
 import Header from './components/Header'
-import OffersList from './components/OffersList'
 import Footer from './components/Footer'
+import OffersList from './components/OffersList'
+import OfferPage from './components/OfferPage'
 
 function App() {
   return (
-    <div>
+    <Router>
       <Header />
-      <OffersList />
+      <Switch>
+
+        <Route exact path="/">
+          <OffersList />
+        </Route>
+
+        <Route path="/offers/:id">
+          <OfferPage teste="Hello props" />
+        </Route>
+
+      </Switch>
       <Footer />
-    </div>
+    </Router>
   );
 }
 

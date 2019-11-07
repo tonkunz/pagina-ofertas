@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
+import { Link } from 'react-router-dom'
 
 function ListItem(props) {
     const { offer } = props
@@ -26,7 +27,7 @@ function ListItem(props) {
                     </p>
                     <h6>Preço: R${offer.price}</h6>
                     <h6>Preço de mercado: R${offer.market_price}</h6>
-                    <a href="!#" className="btn btn-primary">Comprar</a>
+                    <Link to={`/offers/${offer.id}`} className="btn btn-primary">Comprar</Link>
                 </div>
             </div>
         </li>

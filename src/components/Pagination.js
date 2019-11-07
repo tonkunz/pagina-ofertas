@@ -19,13 +19,12 @@ export default function Pagination(props) {
       <ul className="pagination">
         {pageNumbers.map(number => (
           <li key={number} className="page-item">
-            <a
-              href="!#"
+            <button
               className="page-link"
               onClick={() => handlePaginate(number)}
             >
               {number}
-            </a>
+            </button>
           </li>
         ))}
       </ul>
