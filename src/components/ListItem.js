@@ -9,21 +9,25 @@ function ListItem(props) {
     }
 
     return (
-        <li className="col-md-3 card" style={{ width: '18rem' }}>
-            {
-                // todo: <img src={} className="card-img-top" alt="..." />
-            }
-            <div className="card-body">
-                <h5 className="card-title">
-                    {truncate(offer.title, 50)}
-                </h5>
+        <li className="col-lg-4 app-list-li">
+            <div className="card">
+                <img
+                    src={offer.image.url}
+                    className="card-img"
+                    alt="..."
+                />
+                <div className="card-body">
+                    <h5 className="card-title">
+                        {truncate(offer.title, 45)}
+                    </h5>
 
-                <span className="card-description text-justify">
-                    {ReactHtmlParser(truncate(offer.description, 150))}
-                </span>
-
-                <p>{offer.price} - {offer.market_price}</p>
-
+                    <p className="card-text">
+                        {ReactHtmlParser(truncate(offer.description, 150))}
+                    </p>
+                    <h6>Preço: R${offer.price}</h6>
+                    <h6>Preço de mercado: R${offer.market_price}</h6>
+                    <a href="!#" className="btn btn-primary">Comprar</a>
+                </div>
             </div>
         </li>
     )
