@@ -10,6 +10,7 @@ import Footer from './components/templates/Footer'
 import Loading from './components/templates/Loading'
 import OffersList from './components/OffersList'
 import OfferPage from './components/OfferPage'
+import CheckoutPage from './components/CheckoutPage'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -33,8 +34,12 @@ function App() {
             <OffersList offers={offers} />
           </Route>
 
-          <Route path="/offers/:id">
+          <Route  path="/offers/:id">
             <OfferPage />
+          </Route>
+
+          <Route exact path="/checkout">
+            <CheckoutPage />
           </Route>
 
         </Switch>

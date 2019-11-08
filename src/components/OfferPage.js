@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import ReactHtmlParser from 'react-html-parser'
 import Loading from './templates/Loading'
 
@@ -44,9 +44,9 @@ export default function OfferPage({ teste }) {
                   R${offer.price}
                 </p>
                 
-                <button className="btn btn-danger btn-lg btn-block">
+                <Link className="btn btn-danger btn-lg btn-block" to="/checkout">
                   Comprar
-                </button>
+                </Link>
               </div>
             </div>
             <hr />
@@ -54,7 +54,6 @@ export default function OfferPage({ teste }) {
               <h5 className="">Descrição: </h5>
               <p className="lead">{ReactHtmlParser(offer.description)}</p>
             </div>
-          
         </>
       }
     </div>
