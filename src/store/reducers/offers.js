@@ -1,11 +1,16 @@
-import { RECEIVE_OFFERS } from '../actions/offers'
+import { RECEIVE_OFFERS, RECEIVE_OFFER } from '../actions/offers'
 
-export default function offers(state = [], action) {
+export default function offers(state = {}, action) {
   switch (action.type) {
     case RECEIVE_OFFERS:
-      return [
-        ...action.offers
-      ]
+      return {
+        offers: [...action.offers]
+      }
+    case RECEIVE_OFFER:
+      return {
+        ...state,
+        singleOffer: action.offer
+      }
     default:
       return state
   }
