@@ -1,21 +1,23 @@
 import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 function ListItem(props) {
     const { offer } = props
+    const history = useHistory()
 
     function truncate(str, range) {
         return str.length > range ? `${str.substring(0, range)}...` : str;
     }
 
     return (
-        <li className="col-lg-4 app-list-li">
+        <li className="col-lg-4 col-md-6 app-list-li" >
             <div className="card">
                 <img
                     src={offer.image.url}
                     className="card-img"
-                    alt="..."
+                    alt={`Offer ${offer.id}`}
+                    onClick={() => history.push(`/offers/${offer.id}`)}
                 />
                 <div className="card-body">
                     <h5 className="card-title">

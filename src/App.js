@@ -1,30 +1,27 @@
 import React, { useState, useEffect } from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-// Api
-import { getOffers } from './services/api'
+import { handleReceiveOffers } from './store/actions/offers'
 
 // Our components
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Loading from './components/Loading'
+import Header from './components/templates/Header'
+import Footer from './components/templates/Footer'
+import Loading from './components/templates/Loading'
 import OffersList from './components/OffersList'
 import OfferPage from './components/OfferPage'
+import CheckoutPage from './components/CheckoutPage'
 
 function App() {
-  const [offers, setOffers] = useState([])
   const [loading, setLoading] = useState(true)
 
-  // ComponentDidMont
+  const offers = useSelector(state => state)
+  const dispatch = useDispatch()
+
+  // ComponentDidMount
   useEffect(() => {
-    getOffers()
-      .then(data => setOffers(data))
-      .then(() => setLoading(false))
-  }, [])
+    dispatch(handleReceiveOffers()).then(() => setLoading(false))
+  }, [dispatch])
 
   return (
     <Router>
@@ -37,8 +34,12 @@ function App() {
             <OffersList offers={offers} />
           </Route>
 
-          <Route path="/offers/:id">
-            <OfferPage data={offers} />
+          <Route  path="/offers/:id">
+            <OfferPage />
+          </Route>
+
+          <Route exact path="/checkout">
+            <CheckoutPage />
           </Route>
 
         </Switch>
@@ -46,7 +47,7 @@ function App() {
 
       <Footer />
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App
