@@ -1,18 +1,18 @@
 const url = 'https://playground.barato.com.br/desafio-front/api'
 
 const headers = {
-    Accept: "application/json",
-    "Content-Type": "application/json"
-  }
+  Accept: "application/json",
+  "Content-Type": "application/json"
+}
 
 export const getOffers = () => (
-    fetch(`${url}/offers`, { headers })
-        .then(res => res.json())
+  fetch(`${url}/offers`, { headers })
+    .then(res => res.json())
+    .catch(e => console.warn('API: getOffers method error: ',e))
 )
 
-// Just for tests
-// export const testApi = () => (
-//     fetch(`${url}/offers`, { headers })
-//         .then(res => res.json())
-//         .then(data => console.log(data))
-// )
+export const getOffer = (id) => (
+  fetch(`${url}/offer/${id}`, { headers })
+    .then(res => res.json())
+    .catch(e => console.warn('API: getOffer method error: ',e))
+)

@@ -5,9 +5,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { handleReceiveOffers } from './store/actions/offers'
 
 // Our components
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Loading from './components/Loading'
+import Header from './components/templates/Header'
+import Footer from './components/templates/Footer'
+import Loading from './components/templates/Loading'
 import OffersList from './components/OffersList'
 import OfferPage from './components/OfferPage'
 
@@ -20,7 +20,7 @@ function App() {
   // ComponentDidMount
   useEffect(() => {
     dispatch(handleReceiveOffers()).then(() => setLoading(false))
-  }, [])
+  }, [dispatch])
 
   return (
     <Router>
@@ -34,7 +34,7 @@ function App() {
           </Route>
 
           <Route path="/offers/:id">
-            <OfferPage data={offers} />
+            <OfferPage />
           </Route>
 
         </Switch>
