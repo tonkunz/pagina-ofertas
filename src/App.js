@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-// Api
-import { getOffers } from './services/api'
+import { handleReceiveOffers } from './store/actions/offers'
 
 // Our components
 import Header from './components/Header'
@@ -16,14 +12,14 @@ import OffersList from './components/OffersList'
 import OfferPage from './components/OfferPage'
 
 function App() {
-  const [offers, setOffers] = useState([])
   const [loading, setLoading] = useState(true)
 
-  // ComponentDidMont
+  const offers = useSelector(state => state)
+  const dispatch = useDispatch()
+
+  // ComponentDidMount
   useEffect(() => {
-    getOffers()
-      .then(data => setOffers(data))
-      .then(() => setLoading(false))
+    dispatch(handleReceiveOffers()).then(() => setLoading(false))
   }, [])
 
   return (
@@ -46,7 +42,7 @@ function App() {
 
       <Footer />
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -10,7 +10,7 @@ function ListItem(props) {
     }
 
     return (
-        <li className="col-lg-4 app-list-li">
+        <li className="col-lg-4 col-md-6 app-list-li">
             <div className="card">
                 <img
                     src={offer.image.url}
