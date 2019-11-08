@@ -15,7 +15,7 @@ import CheckoutPage from './components/CheckoutPage'
 function App() {
   const [loading, setLoading] = useState(true)
 
-  const offers = useSelector(state => state)
+  const offers = useSelector(state => state.offers)
   const dispatch = useDispatch()
 
   // ComponentDidMount
@@ -34,7 +34,7 @@ function App() {
             <OffersList offers={offers} />
           </Route>
 
-          <Route  path="/offers/:id">
+          <Route path="/offers/:id">
             <OfferPage />
           </Route>
 
